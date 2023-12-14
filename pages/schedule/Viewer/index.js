@@ -13,6 +13,11 @@ const App = () => {
     requestCalendarPermissions();
   }, []);
 
+	const onDayPress = (day) => {
+    const date = new Date(day.timestamp);
+    fetchEventsForDay(date);
+  };
+	
   const requestCalendarPermissions = async () => {
     try {
       const { status } = await Calendar.requestCalendarPermissionsAsync();
@@ -70,12 +75,14 @@ const App = () => {
         items={items}
         renderItem={renderItem}
         selected={new Date().toISOString().split('T')[0]}
+        onDayPress={onDayPress}
         theme={{
-					selectedDayBackgroundColor: 'purple',
-					selectedDayTextColor: '#ffffff',
-					agendaDayTextColor: 'purple',
-          agendaTodayColor: 'purple'
+          selectedDayBackgroundColor: 'purple',
+          selectedDayTextColor: '#ffffff',
+          agendaDayTextColor: 'purple',
+          agendaTodayColor: 'purple',
         }}
+        renderEmptyData={() => <View><Text>No Events</Text></View>}
       />
     </SafeAreaView>
   );
