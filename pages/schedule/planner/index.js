@@ -4,6 +4,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 import { styles } from './styles';
 import { DURATION, WEEKDAYS } from '../../../utils/schedule';
+import { scheduleEvent } from '../../../utils/scheduleEvent';
 
 export default function SchedulePlanner({navigation}) {
  const [activeDay, setActiveDay] = useState('Monday');
@@ -34,6 +35,16 @@ export default function SchedulePlanner({navigation}) {
 
  const handleSubmit = () => {
    console.log(slots);
+   Object.keys(slots).forEach(day => {
+    slots[day].forEach(async (slot) => {
+      try {
+        await scheduleEvent(slot.start_time, slot.end_time);
+      } catch (error) {
+        console.error("Error scheduling event:", error);
+      }
+    });
+  });
+
    navigation.navigate('ScheduleSuccess')
  }
 

@@ -1,7 +1,7 @@
 import * as Calendar from 'expo-calendar';
 import { Alert } from 'react-native';
 
-export const createRecurringEvent = async (start_time, end_time) => {
+export const scheduleEvent = async (start_time, end_time) => {
   try {
     const calendars = await Calendar.getCalendarsAsync();
     const defaultCalendar = calendars.find(calendar => calendar.allowsModifications);
