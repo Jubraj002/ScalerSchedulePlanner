@@ -1,23 +1,49 @@
 import React, { useState } from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { styles } from './styles';
 import { DURATION, WEEKDAYS } from '../../../utils/schedule';
 
-export default function SchedulePlanner() {
+export default function SchedulePlanner({navigation}) {
  const [activeDay, setActiveDay] = useState('Monday');
- const [activeStartTime, setActiveStartTime] = useState('');
+ const [activeStartTime, setActiveStartTime] = useState(new Date().toString());
  const [activeDuration, setActiveDuration] = useState();
  const [slots, setSlots] = useState({});
  const [showDatepicker, setShowDatePicker] = useState(false);
+  
 
- const handleDateChange = () => {
-   setActiveStartTime(activeStartTime);
+ const handleDateChange = (value, date) => {
+   const newDate = new Date(date)
+   setActiveStartTime(newDate.toString());
    setShowDatePicker(false);
  }
 
+ const handleAddForTheDay = () => {
+  if(activeDuration){
+   const startTime = new Date(activeStartTime); 
+   const endTime = new Date(startTime.getTime() + activeDuration*60000);
+   const value = [{start_time: startTime, end_time: endTime}]
+
+   setSlots({
+      ...slots,
+      [activeDay]: value
+   })
+  }
+ }
+
+ const handleSubmit = () => {
+   console.log(slots);
+   navigation.navigate('ScheduleSuccess')
+ }
+
+ const handleWeekdayChange = (weekday) => {
+  setActiveDay(weekday);
+  setActiveDuration(0);
+  setActiveStartTime(new Date().toString());
+ }
+
+ console.log(activeDay);
  return (
     <View style={styles.container}>
       <View style={styles.imageBlock}>
@@ -34,8 +60,11 @@ export default function SchedulePlanner() {
          <Text style={styles.groupTitle}>Choose Days</Text>
            <View style={styles.optionsContainer}>
             {WEEKDAYS.map((weekday) => 
-            <TouchableOpacity style={styles.option}>
-               <Text>{weekday}</Text>
+            <TouchableOpacity 
+              style={activeDay === weekday ?  styles.selectedOption : styles.option}
+              onPress={() => handleWeekdayChange(weekday)}
+            >
+              <Text style={styles.optionText}>{weekday}</Text>
             </TouchableOpacity>
             )}
            </View>
@@ -43,14 +72,17 @@ export default function SchedulePlanner() {
       <View style={styles.groupContainer}>
          <Text style={styles.groupTitle}>Choose Start Time</Text>
          <TouchableOpacity style={styles.option} onPress={() => setShowDatePicker(true)}>
-           <Text>{activeStartTime} mins</Text>
+           <Text>{new Date(activeStartTime).toLocaleTimeString()}</Text>
          </TouchableOpacity>
       </View>
       <View style={styles.groupContainer}>
          <Text style={styles.groupTitle}>For how long?</Text>
          <View style={styles.optionsContainer}>
             {DURATION.map((timing) => 
-            <TouchableOpacity style={styles.option}>
+            <TouchableOpacity
+             style={timing === activeDuration ? styles.selectedOption : styles.option} 
+             onPress={() => {setActiveDuration(timing)}}
+             >
                <Text>{timing} mins</Text>
             </TouchableOpacity>
             )}
@@ -60,8 +92,14 @@ export default function SchedulePlanner() {
          showDatepicker && <DateTimePicker mode='time' value={new Date()} onChange={handleDateChange}/>
       }
       <TouchableOpacity
+         onPress={handleAddForTheDay}
+         style={styles.addButton}
+      >
+        <Text style={styles.addButtonText}>Add for the day</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
         style={styles.cta}
-        onPress={() => navigation.navigate('PersonaForm')}
+        onPress={handleSubmit}
       > 
         <Text style={styles.ctaText}> Create Plan & Add to Calendar! </Text>
       </TouchableOpacity>

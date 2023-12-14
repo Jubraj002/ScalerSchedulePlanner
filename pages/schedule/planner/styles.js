@@ -76,9 +76,37 @@ export const styles = StyleSheet.create({
   personaDescription: {
     color: '#481F66',
     fontSize: 14
+  },
+  selectedOption: {
+    borderRadius: 8,
+    borderWidth: 1,
+    backgroundColor: '#F9F4FC',
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingBottom: 8,
+    paddingTop: 8,
+    borderColor: '#913ECE'
+  },
+  addButton: {
+    color: '#913ECE',
+    borderColor: '#913ECE',
+    borderRadius: 4,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingBottom: 8,
+    paddingTop: 8,
+    borderWidth: 1,
+    position: 'absolute',
+    bottom: 90,
+    marginLeft: 10,
+    marginRight: 10,
+    width: 327,
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  addButtonText: {
+    color: '#913ECE'
   }
 });        
-
-// borderR: 8px;
-// border: 1px solid var(--neutrals-mid-tones-ns-4, #D6DEE5);
-// background: var(--neutrals-light-tones-ns-0, #FFF);
