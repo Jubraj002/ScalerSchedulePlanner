@@ -46,8 +46,7 @@ function Nudge({navigation}) {
         </View>
         <View style={styles.descriptionBlock}>
             <Image
-            source={require('../../assets/images/personaVectorTwo.png')}
-            style={styles.backgroundVector}
+              source={require('../../assets/images/personaVectorTwo.png')}
             />
             <Text style={styles.description}>{data.description}</Text>
         </View>

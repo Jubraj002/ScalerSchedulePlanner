@@ -12,8 +12,12 @@ export default function SchedulePlanner({navigation}) {
  const [activeDuration, setActiveDuration] = useState();
  const [slots, setSlots] = useState({});
  const [showDatepicker, setShowDatePicker] = useState(false);
-  
+ const route = useRoute();
 
+ const {
+  imageUrl
+ } = route.params;
+  
  const handleDateChange = (value, date) => {
    const newDate = new Date(date)
    setActiveStartTime(newDate.toString());
@@ -59,7 +63,7 @@ export default function SchedulePlanner({navigation}) {
     <View style={styles.container}>
       <View style={styles.imageBlock}>
          <Image 
-           source={require('../../../assets/images/persona.png')}
+           source={{uri: imageUrl}}
            style={styles.image}
          />
          <View style={styles.header}>

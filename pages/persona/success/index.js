@@ -7,14 +7,7 @@ import {styles} from './styles'
 import { fetchPersona } from "../../../api/api";
 
 function PersonaCreationSuccess({navigation}) {
-  const route = useRoute()
   const [response, setResponse] = useState({});
-  const {
-    imageUrl,
-    description,
-    personaName,
-    userName
-  } = route.params;
 
   useEffect(() => {
     let interval;
@@ -53,7 +46,7 @@ function PersonaCreationSuccess({navigation}) {
           </View>
           <TouchableOpacity
             style={styles.cta}
-            onPress={() => navigation.navigate('SchedulePlanner')}
+            onPress={() => navigation.navigate('SchedulePlanner', {imageUrl: response.image})}
         > 
             <Text style={styles.ctaText}> Let’s Make Your Study Plan </Text>
           </TouchableOpacity>
