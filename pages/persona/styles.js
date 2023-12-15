@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
     marginBottom: 0,
   },
   headerDescription: {
-    fontSize: 28.8,
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#481F66',
   },

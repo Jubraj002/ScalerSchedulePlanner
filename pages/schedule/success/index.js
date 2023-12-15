@@ -3,7 +3,7 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 
 import {styles} from './styles';
 
-export default function ScheduleSuccess() {
+export default function ScheduleSuccess({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.successData}>
@@ -16,7 +16,7 @@ export default function ScheduleSuccess() {
       </View>
       <TouchableOpacity
         style={styles.cta}
-        onPress={() => navigation.navigate('PersonaForm')}
+        onPress={() => navigation.navigate('ScheduleViewer')}
       > 
         <Text style={styles.ctaText}> Got It ! </Text>
       </TouchableOpacity>

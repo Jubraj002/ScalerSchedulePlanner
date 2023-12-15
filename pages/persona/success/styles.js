@@ -62,5 +62,9 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     flexGrow: 1,
     justifyContent: 'space-between',
+  },
+  backgroundVector: {
+    width: 375,
+    height: 326
   }
 });

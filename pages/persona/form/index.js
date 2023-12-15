@@ -26,7 +26,6 @@ function PersonaForm({
     try {
       const formattedResponse = formatOptions(formResponse)
       const response = await submitPersona(formattedResponse);
-      console.log(response.message);
       navigation.navigate('PersonaCreationSuccess', { 
         imageUrl: 'assets/images/persona.png', 
         description: response.message,
@@ -131,7 +130,7 @@ function PersonaForm({
             disabled={Object.keys(formResponse).length !== 7}
             aria-disabled={Object.keys(formResponse).length !== 7}
           > 
-            <Text style={styles.ctaText}> Press Me Now </Text>
+            <Text style={styles.ctaText}> Submit </Text>
           </TouchableOpacity>
         </ScrollView>
       </View>

@@ -18,13 +18,13 @@ function Persona({ navigation }) {
       </View>
       <View style={styles.descriptionBlock}>
         <Text style={styles.headerDescription}>{WELCOME_SCREEN_INFORMATION.headerDescription}</Text>
-        <Text>{WELCOME_SCREEN_INFORMATION.headerTitle}</Text>
+        <Text style={styles.headerDescription}>{WELCOME_SCREEN_INFORMATION.headerTitle}</Text>
         <Text style={styles.description}>{WELCOME_SCREEN_INFORMATION.description}</Text>
           <TouchableOpacity
             style={styles.cta}
             onPress={() => navigation.navigate('PersonaForm')}
           > 
-            <Text style={styles.ctaText}> Press Me Now </Text>
+            <Text style={styles.ctaText}> Create My Enforcer </Text>
           </TouchableOpacity>
       </View>
     </View>

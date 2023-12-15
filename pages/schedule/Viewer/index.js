@@ -6,7 +6,7 @@ import * as Calendar from 'expo-calendar';
 
 import { styles } from './styles';
 
-const App = () => {
+const ScheduleViewer = () => {
   const [items, setItems] = useState({});
 
   useEffect(() => {
@@ -88,4 +88,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default ScheduleViewer;
