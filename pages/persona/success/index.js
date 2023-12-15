@@ -25,7 +25,9 @@ function PersonaCreationSuccess({navigation}) {
   }, [])
 
   if(response === undefined || Object.keys(response).length === 0){
-    return (<Text> Is Loading</Text>);
+    return (<View style={styles.loadingContainer}>
+      <Text style={styles.loadingText}> Is Loading</Text>
+    </View>);
   }
   
   return(

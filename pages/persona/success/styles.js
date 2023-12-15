@@ -7,6 +7,18 @@ export const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center'
   },
+  loadingContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  loadingText: {
+    fontWeight: 'bold',
+    color: '#481F66',
+    fontWeight: 'bold'
+  },
   imageBlock: {
     position: 'relative'
   },
