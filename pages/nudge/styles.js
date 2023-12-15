@@ -5,7 +5,8 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#FFF'
   },
   imageBlock: {
     position: 'relative'
@@ -27,5 +28,27 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     flexGrow: 1,
     justifyContent: 'space-between',
+  },
+  problemBlock:{
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignContent: 'flex-start',
+    width: '80%'
+  },
+  problem: {
+    display: 'flex',
+    padding: 10,
+    borderRadius: 8,
+    backgroundColor: '#F4F6F9',
+    fontSize: 16.2,
+    lineHeight: 28.8,
+    width: '100%'
+  },
+  problemTitle: {
+    color: '#481F66',
+    fontWeight: 'bold',
+    marginBottom: 8,
+    marginTop: 8
   }
 });

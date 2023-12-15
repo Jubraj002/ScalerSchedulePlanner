@@ -1,59 +1,52 @@
-import React, { useEffect, useState } from "react";
-import {View, Text, Image} from 'react-native';
+import React from "react";
+import {View, Text, Image, TouchableOpacity, Linking} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute } from "@react-navigation/native"
 
 import {styles} from './styles'
-import { getNudgeScreenData } from "../../api/api";
 
-function Nudge({navigation}) {
+function Nudge() {
   const route = useRoute()
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState({});
 
-  async function fetchData() {
-    try {
-        setIsLoading(true);
-        const response = await getNudgeScreenData();
-        setData(response);
-        setIsLoading(false);
+  const {
+    image,
+    problems,
+    description,
+  } = route.params || {};
 
-    } catch (error){
-        console.log(error);
-    }
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, [])
-
-  if(isLoading){
-    return (
+  return(
+    <SafeAreaView>
       <View style={styles.container}>
-        <Text>Data is loading</Text>
+      <View style={styles.imageBlock}>
+          <Image
+          source={{uri: image}}
+          style={styles.backgroundVector}
+          />
       </View>
-    )
-  }
-  else {
-    return(
-      <SafeAreaView>
-        <View style={styles.container}>
-        <View style={styles.imageBlock}>
-            <Image
-            source={require('../../assets/images/persona.png')}
-            style={styles.backgroundVector}
-            />
+      <View style={styles.descriptionBlock}>
+        <Image
+          source={require('../../assets/images/personaVectorTwo.png')}
+        />
+        <Text style={styles.description}>{description}</Text>
+      </View>
+      {
+        problems && (<View style={styles.problemBlock}>
+          <Text style={styles.problemTitle}>Problems to solve</Text>
+          {
+            (problems || []).map((problem) => {
+             return (
+              <TouchableOpacity style={styles.problem} onPress={() => Linking.openURL(problem.link)}>
+                <Text style={styles.problemText}>{problem.title}</Text>
+              </TouchableOpacity>
+             );
+            })
+          }
         </View>
-        <View style={styles.descriptionBlock}>
-            <Image
-              source={require('../../assets/images/personaVectorTwo.png')}
-            />
-            <Text style={styles.description}>{data.description}</Text>
-        </View>
-        </View>
-      </SafeAreaView>
-    )
-  }
+        )
+      }
+      </View>
+    </SafeAreaView>
+  )
 }
 
 
