@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useRoute } from "@react-navigation/native"
 
 import { styles } from './styles';
 import { DURATION, WEEKDAYS } from '../../../utils/schedule';
@@ -15,7 +16,8 @@ export default function SchedulePlanner({navigation}) {
  const route = useRoute();
 
  const {
-  imageUrl
+  imageUrl,
+  persona
  } = route.params;
   
  const handleDateChange = (value, date) => {
@@ -67,7 +69,7 @@ export default function SchedulePlanner({navigation}) {
            style={styles.image}
          />
          <View style={styles.header}>
-           <Text style={styles.personaTitle}>Amma...</Text>
+           <Text style={styles.personaTitle}>{persona}...</Text>
            <Text style={styles.personaDescription}>Create a weekly study plan so you study at least 8 hours per week!</Text>
          </View>
       </View>

@@ -46,7 +46,7 @@ function PersonaCreationSuccess({navigation}) {
           </View>
           <TouchableOpacity
             style={styles.cta}
-            onPress={() => navigation.navigate('SchedulePlanner', {imageUrl: response.image})}
+            onPress={() => navigation.navigate('SchedulePlanner', {imageUrl: response.image, persona: response.persona})}
         > 
             <Text style={styles.ctaText}> Let’s Make Your Study Plan </Text>
           </TouchableOpacity>
